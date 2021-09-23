@@ -29,6 +29,8 @@ public class StepDefATM {
         bank.addCustomer(new Customer(id, pin, balance));
     }
 
+    @When("I login to ATM with")
+
     @When("I login to ATM with id {int} and pin {int}")
     public void i_login_to_ATM_with_id_and_pin(int id, int pin) {
         validLogin = atm.validateCustomer(id, pin);
@@ -68,6 +70,11 @@ public class StepDefATM {
     public void customer_id_account_balance_is(int id, double balance) {
         assertEquals(balance,
                      bank.findCustomer(id).getAccount().getBalance());
+    }
+
+    @When("I deposit {float} in my account")
+    public void i_deposit_money(double amount) {
+        atm.deposit(amount);
     }
 
 }
